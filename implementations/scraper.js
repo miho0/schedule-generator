@@ -5,6 +5,9 @@ const url = "https://www.wise-tt.com/wtt_um_feri/index.jsp?filterId=0;580,414;0;
 const openWeekXPath = '//*[@id="form:j_idt149"]/div[3]';
 const selectWeekXPath = '//*[@id="form:j_idt149_1"]';
 
+const openProgramXPath = '//*[@id="form:j_idt177"]/div[3]';
+const selecProgramXPath = '//*[@id="form:j_idt177_panel"]/div';
+
 const startTime = 7;
 
 const days = [
@@ -22,7 +25,7 @@ const selections = [
     '1'
 ]
 
-const scrape = async (result) => {
+const getScheduleForUser = async (result) => {
     return new Promise(async (resolve, reject) => {
         const browser = await puppeteer.launch({
             headless: true,
@@ -143,12 +146,49 @@ const generateScheduleBasedOnSelections = (schedule, subjects, selections) => {
     return newSchedule;
 }
 
+// gets all programs from the website
+const getPrograms = async () => {
+    return new Promise(async (resolve, reject) => {
+        const browser = await puppeteer.launch({
+            headless: true,
+            defaultViewport: null,
+        });
+
+        const page = await browser.newPage();
+
+        await page.goto((url), {
+            waitUntil: "domcontentloaded",
+        });
+
+        const openProgram = await page.$x(openProgramXPath);
+
+        if (openProgram.length > 0) {
+            await openProgram[0].click();
+        }
+
+        const selectProgramList = await page.$x(selecProgramXPath);
+        const programLiList = await selectProgramList[0].$$('li')
+
+        let programs = [];
+
+        for (const program of programLiList) {
+            const innerHTML = await page.evaluate(el => el.innerHTML, program);
+            programs.push(innerHTML);
+        }
+
+        resolve(programs);
+
+        await browser.close();
+    });
+}
+
+
 // TODO
 const getAllGroupsForSubjects = () => {
 
 }
 
-module.exports = {scrape}
+module.exports = {getScheduleForUser, getPrograms}
 
 // TODO:
 // - change the subjects input format

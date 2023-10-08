@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    h1 Simple Form with Bootstrap
+
+    form
+      .form-group
+        label(for="dropdown1") Select Option 1
+        select.form-control#dropdown1(name="option1")
+          option(value="option1") Option 1
+          option(value="option2") Option 2
+          option(value="option3") Option 3
+
+      .form-group
+        label(for="dropdown2") Select Option 2
+        select.form-control#dropdown2(name="option2")
+          option(value="option4") Option 4
+          option(value="option5") Option 5
+          option(value="option6") Option 6
+
+      button.btn.btn-primary(type="submit") Submit
