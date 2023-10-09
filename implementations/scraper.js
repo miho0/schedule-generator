@@ -147,6 +147,7 @@ const generateScheduleBasedOnSelections = (schedule, subjects, selections) => {
 }
 
 // gets all programs from the website
+// TODO no longer works
 const getPrograms = async () => {
     return new Promise(async (resolve, reject) => {
         const browser = await puppeteer.launch({

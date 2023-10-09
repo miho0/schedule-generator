@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const {getConnection} = require('../database/connection');
+
 const { getScheduleForUser, getPrograms } = require('../implementations/scraper');
-const {log} = require("debug");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,6 +20,11 @@ router.get('/getSchedule', function(req, res, next) {
     getScheduleForUser().then((result) => {
         res.json({result});
     });
+});
+
+router.get('/test', function(req, res, next) {
+    const db = getConnection();
+    res.render("index");
 });
 
 
