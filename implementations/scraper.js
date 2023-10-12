@@ -10,14 +10,6 @@ const selecProgramXPath = '//*[@id="form:j_idt177_panel"]/div';
 
 const startTime = 7;
 
-const days = [
-    'Monday',
-    'Tuesday',
-    'Wednsday',
-    'Thursday',
-    'Friday'
-]
-
 const selections = [
     '1',
     '1',
@@ -85,7 +77,7 @@ const getSchedule = async (calendarTable) => {
                     const timeValues = id.split(":");
                     const groupSplit = groupValue.split(" ");
 
-                    const dayIndex = parseInt(timeValues[4]);
+                    const day = parseInt(timeValues[4]);
                     const timeIndex = timeValues[2];
 
                     const professor = valueSplit[0];
@@ -93,7 +85,6 @@ const getSchedule = async (calendarTable) => {
 
                     const group = groupSplit[groupSplit.length - 2] + groupSplit[groupSplit.length - 1];
 
-                    const day = days[dayIndex]
                     const time = startTime + (timeIndex / 2);
 
                     schedule.push({

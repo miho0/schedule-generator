@@ -19,17 +19,19 @@ const {connectToMongoDB} = require('./database/connection');
 
 // const db = require('./database.js');
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/updateData', updateDataRouter);
-app.use('/schedule', scheduleRouter);
-
-app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:4200"],
   method: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
 }));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/update', updateDataRouter);
+app.use('/schedule', scheduleRouter);
+
+app.use(express.json());
+
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
