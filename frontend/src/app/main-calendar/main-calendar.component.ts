@@ -37,6 +37,12 @@ const colors: Record<string, EventColor> = {
   },
 };
 
+const typeToColor: Record<string, string> = {
+  PR: 'red',
+  RV: 'blue',
+  SV: 'yellow'
+}
+
 @Component({
   selector: 'app-main-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -91,14 +97,7 @@ export class MainCalendarComponent implements OnInit {
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    {
-      id: 1,
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors['red'],
-    }
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
 
@@ -117,8 +116,8 @@ export class MainCalendarComponent implements OnInit {
             id: item._id,
             start: this.getStartingTime(item),
             end: endTime,
-            title: item.subject,
-            color: colors['red'],
+            title: `${item.subject} \n ${item.professor} \n ${item.classroom} \n ${item.type}`,
+            color: colors[typeToColor[item.type]]
           });
         });
 
