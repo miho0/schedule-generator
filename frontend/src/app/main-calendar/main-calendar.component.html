@@ -1,4 +1,4 @@
-
+<app-header></app-header>
 
 <!--<div class="row text-center">-->
 <!--  <div class="col-md-4">-->
@@ -42,13 +42,13 @@
 <!--      >-->
 <!--        Month-->
 <!--      </div>-->
-      <div
-        class="btn btn-primary"
-        (click)="setView(CalendarView.Week)"
-        [class.active]="view === CalendarView.Week"
-      >
-        Week
-      </div>
+<!--      <div-->
+<!--        class="btn btn-primary"-->
+<!--        (click)="setView(CalendarView.Week)"-->
+<!--        [class.active]="view === CalendarView.Week"-->
+<!--      >-->
+<!--        Week-->
+<!--      </div>-->
 <!--      <div-->
 <!--        class="btn btn-primary"-->
 <!--        (click)="setView(CalendarView.Day)"-->
@@ -60,7 +60,7 @@
 <!--  </div>-->
 <!--</div>-->
 <br />
-<div *ngIf="!isLoading" [ngSwitch]="view">
+<div [ngSwitch]="header.view">
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
@@ -81,7 +81,7 @@
     [refresh]="refresh"
     [dayStartHour]="7"
     [dayEndHour]="21"
-    [hourSegmentHeight]="18"
+    [hourSegmentHeight]="16.5"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
   >

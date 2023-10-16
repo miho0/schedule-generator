@@ -17,7 +17,7 @@ const selections = [
     '1'
 ]
 
-const getScheduleForUser = async (result) => {
+const getFullSchedule = async (result) => {
     return new Promise(async (resolve, reject) => {
         const browser = await puppeteer.launch({
             headless: true,
@@ -44,9 +44,7 @@ const getScheduleForUser = async (result) => {
         setTimeout(async () => {
             const calendarTable = await page.$('#mainCalendar')
             const schedule = await getSchedule(calendarTable);
-            const subjects = getAllRVSubjects(schedule);
-            result = generateScheduleBasedOnSelections(schedule, subjects, selections);
-            resolve(result);
+            resolve(schedule);
 
             await browser.close();
         }, 2000);
@@ -180,7 +178,7 @@ const getAllGroupsForSubjects = () => {
 
 }
 
-module.exports = {getScheduleForUser, getPrograms}
+module.exports = {getFullSchedule, getPrograms}
 
 // TODO:
 // - change the subjects input format

@@ -13,6 +13,6 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   public getSchedule(): Observable<ScheduleEventsApiResponse> {
-    return this.http.get<ScheduleEventsApiResponse>(this.baseUrl + '/schedule', {withCredentials: true});
+    return this.http.get<ScheduleEventsApiResponse>(this.baseUrl + '/schedule/getFull', {withCredentials: true});
   }
 }

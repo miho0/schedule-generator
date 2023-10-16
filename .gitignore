@@ -1,3 +1,4 @@
 /frontend/node_modules/
-/frontend/.angular/
 /database/connectionInfo.js
+/frontend/.angular
+/node_modules

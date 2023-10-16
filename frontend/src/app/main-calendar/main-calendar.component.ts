@@ -21,6 +21,7 @@ import { EventColor } from 'calendar-utils';
 import {HttpService} from "../services/http.service";
 import {ScheduleEvent} from "../models/ScheduleEvent";
 import {ScheduleEventsApiResponse} from "../models/ScheduleEventsApiResponse";
+import {HeaderService} from "../services/header.service";
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -65,8 +66,6 @@ export class MainCalendarComponent implements OnInit {
 
   isLoading : boolean = true;
 
-  view: CalendarView = CalendarView.Week;
-
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
@@ -101,7 +100,7 @@ export class MainCalendarComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService, public header: HeaderService) {}
 
   ngOnInit(): void {
     this.isLoading = true; // Set isLoading to true initially
@@ -195,10 +194,6 @@ export class MainCalendarComponent implements OnInit {
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
   }
 
   closeOpenMonthViewDay() {

@@ -1,0 +1,23 @@
+<mat-toolbar color="grey" class="toolbar">
+  <div class="left">
+    <span (click)="dayView()">Day View</span>
+    <span (click)="weekView()">Week View</span>
+    <span (click)="monthView()">Month View</span>
+  </div>
+
+  <div class="middle">
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="centered-item">Week 3</span>
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="right">
+    <span class="toolbar-title">Choose Configuration</span>
+    <span class="toolbar-title">New Configuration</span>
+
+  </div>
+</mat-toolbar>

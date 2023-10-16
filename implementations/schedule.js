@@ -1,6 +1,6 @@
 const {getConnection} = require('../database/connection');
 
-const getSchedule = async () => {
+const getFullSchedule = async () => {
     try {
         const db = getConnection();
         const collection = db.db("schedule_generator").collection("schedule_items");
@@ -14,4 +14,4 @@ const getSchedule = async () => {
 };
 
 
-module.exports = {getSchedule};
+module.exports = {getFullSchedule};
